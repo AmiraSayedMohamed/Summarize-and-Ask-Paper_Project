@@ -7,7 +7,8 @@ from typing import List, Dict, Any
 import requests
 
 ROOT = os.path.dirname(__file__)
-INDEX_DIR = os.path.join(ROOT, "index")
+# Use /tmp for writable storage on container-based platforms like Hugging Face Spaces
+INDEX_DIR = "/tmp/index"
 os.makedirs(INDEX_DIR, exist_ok=True)
 
 
