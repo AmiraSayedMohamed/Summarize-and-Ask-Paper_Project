@@ -1,5 +1,10 @@
 # ResearchAI — Scientific Literature Analysis Platform
 
+ project link:
+https://summarize-paper-and-ask-it.vercel.app
+![Website Image](https://github.com/AmiraSayedMohamed/Summarize-and-Ask-Paper_Project/blob/master/TransformScientific-image-website.jpg)
+
+
 This repository contains ResearchAI, an AI-powered web application for analyzing scientific PDFs, extracting anchors and structured summaries, and providing an LLM-powered chat interface with clickable citations and a RAG (retrieval-augmented generation) pipeline.
 
 ## Project aim
@@ -94,11 +99,4 @@ A client-side DOM class (`mdl-js`) was being injected after hydration and caused
   - Parallelize indexing and increase embedding batch sizes.
   - Add production deployment notes (Docker, process manager) and CI.
 
----
 
-If you want, I can now:
-- Auto-index uploaded PDFs on upload (implement and test) — low risk.
-- Parallelize indexing across files (faster for batches) — moderate risk.
-- Improve prompt to produce IEEE-style citations — small change.
-
-Tell me which follow-up you want and I'll implement it and run a smoke test.
