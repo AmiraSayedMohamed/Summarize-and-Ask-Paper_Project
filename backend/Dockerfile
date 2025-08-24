@@ -19,6 +19,6 @@ EXPOSE 8000
 
 # Define the command to run the application
 # Uvicorn is the server that will run your FastAPI code.
-# --host 0.0.0.0 makes it accessible from outside the container.
-# Railway will automatically set the PORT environment variable.
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+# Use sh -c so shell environment variable expansion works and the container
+# will bind to the platform-provided $PORT (falling back to 8000 locally).
+CMD ["sh", "-c", "uvicorn main:app --host 0.0.0.0 --port ${PORT:-8000}"]
