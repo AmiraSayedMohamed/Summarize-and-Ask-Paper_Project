@@ -45,7 +45,13 @@ os.makedirs(UPLOAD_DIR, exist_ok=True)
 app.mount("/uploaded_pdfs", StaticFiles(directory=UPLOAD_DIR), name="uploaded_pdfs")
 
 # now load .env so environment variables from backend/.env are available
+
 load_dotenv(os.path.join(ROOT, '.env'))
+
+# Root endpoint for health checks (required by Hugging Face Spaces)
+@app.get("/")
+def read_root():
+    return {"status": "ok", "message": "Backend is running"}
 
 
 def call_openai_chat(prompt: str) -> str:
@@ -724,9 +730,15 @@ async def chat_with_papers_rag(req: Dict = Body(...)):
     return {"answer": answer, "references": ref_map}
 
 
+
 @app.exception_handler(Exception)
 async def generic_exception_handler(request: Request, exc: Exception):
     # simple handler to help debugging while developing
     tb = ''.join(exc.__class__.__name__ + ': ' + str(exc) + '\n')
     print('Unhandled exception:', exc)
     return PlainTextResponse(str(exc), status_code=500)
+
+# Main entry point for running with `python main.py`
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8000)
