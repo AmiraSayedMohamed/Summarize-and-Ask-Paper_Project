@@ -17,7 +17,7 @@ export const uploadFile = async (file: File, projectId: string): Promise<Uploade
   // Upload file to backend
   const formData = new FormData();
   formData.append("file", file);
-  const response = await fetch("http://localhost:8000/upload/", {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/upload/`, {
     method: "POST",
     body: formData,
   });
