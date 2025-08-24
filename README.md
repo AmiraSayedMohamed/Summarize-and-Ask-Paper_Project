@@ -2,7 +2,7 @@
 
  project link:
 https://summarize-paper-and-ask-it.vercel.app
-![Website Image](path/to/image.png](https://github.com/AmiraSayedMohamed/Summarize-and-Ask-Paper_Project/blob/master/TransformScientific-image-website.jpg)
+![Website Image](https://github.com/AmiraSayedMohamed/Summarize-and-Ask-Paper_Project/blob/master/TransformScientific-image-website.jpg)
 
 
 This repository contains ResearchAI, an AI-powered web application for analyzing scientific PDFs, extracting anchors and structured summaries, and providing an LLM-powered chat interface with clickable citations and a RAG (retrieval-augmented generation) pipeline.
