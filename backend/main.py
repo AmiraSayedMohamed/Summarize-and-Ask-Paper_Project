@@ -20,9 +20,9 @@ from starlette.staticfiles import StaticFiles
 import pdfplumber
 import openai
 
-from backend.job_queue import start_job, get_job_status
-from backend.chat_utils import extract_texts_from_files, build_ieee_reference_prompt
-from backend.groq_rag import chunk_text, index_file_chunks, _call_groq_embeddings, search, _call_groq_generate
+from job_queue import start_job, get_job_status
+from chat_utils import extract_texts_from_files, build_ieee_reference_prompt
+from groq_rag import chunk_text, index_file_chunks, _call_groq_embeddings, search, _call_groq_generate
 
 
 app = FastAPI()
@@ -616,7 +616,7 @@ async def job_status(job_id: str):
 @app.get("/debug/job/{job_id}")
 async def debug_job(job_id: str):
     """Development-only endpoint to return the raw job dict including traceback."""
-    from backend import job_queue
+    import job_queue
     return job_queue.jobs.get(job_id, {"status": "not_found"})
 
 
