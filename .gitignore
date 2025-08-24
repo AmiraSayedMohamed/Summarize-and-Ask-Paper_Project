@@ -29,7 +29,20 @@ backend/.env
 *.tsbuildinfo
 next-env.d.ts
 
-# Add sensitive files to ignore
-.env
-*.log
+# Ignore Python cache and virtual environments
 __pycache__/
+venv/
+*.pyc
+
+# Ignore local environment variables
+.env
+
+# Ignore log files
+*.log
+
+# Ignore local user uploads and test files
+backend/uploaded_pdfs/
+
+# Ignore configuration files for other platforms
+backend/Procfile
+vercel.json
