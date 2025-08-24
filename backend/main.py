@@ -711,7 +711,10 @@ async def chat_with_papers_rag(req: Dict = Body(...)):
     for i, h in enumerate(hits, start=1):
         meta = h.get('meta') or {}
         fid = meta.get('file_id') or meta.get('source') or 'unknown'
-        snippets.append(f"[{i}] {fid}: \"{(h.get('text') or '')[:400].replace('\n',' ')}\"")
+        # RAG prompt has a max length, so we truncate the snippets
+        # and remove newlines for better formatting.
+        text_snippet = (h.get('text') or '')[:400].replace('\n', ' ')
+        snippets.append(f"[{i}] {fid}: \"{text_snippet}\"")
         ref_map[i] = {"file_id": fid, "meta": meta}
     prompt = "You are an assistant. Use only the snippets below to answer the user's question. Cite snippets using numbered brackets like [1].\n\nSnippets:\n" + "\n".join(snippets) + f"\n\nUser question: {user_query}\n\nAnswer concisely and include citation brackets."
     try:
