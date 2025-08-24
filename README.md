@@ -1,7 +1,7 @@
 # ResearchAI — Scientific Literature Analysis Platform
 
  project link:
-https://summarize-paper-and-ask-it.vercel.app/dashboard/projects/project_1756037918905_pfk5j5abm/upload
+[https://summarize-paper-and-ask-it.vercel.app/dashboard/projects/project_1756037918905_pfk5j5abm/upload](https://summarize-paper-and-ask-it.vercel.app/)
 
 
 This repository contains ResearchAI, an AI-powered web application for analyzing scientific PDFs, extracting anchors and structured summaries, and providing an LLM-powered chat interface with clickable citations and a RAG (retrieval-augmented generation) pipeline.
