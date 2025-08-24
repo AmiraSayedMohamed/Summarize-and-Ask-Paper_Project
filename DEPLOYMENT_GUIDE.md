@@ -1,42 +1,50 @@
-# Deployment Guide: Vercel (Frontend), Railway (Backend), MongoDB Atlas, Supabase Storage
+# Deployment Guide
 
-## 1. Frontend (Vercel)
-- Sign up at https://vercel.com (no credit card needed)
-- Connect your repo, set env var `NEXT_PUBLIC_API_BASE` to your backend URL
-- Deploy (Vercel auto-builds Next.js)
+This guide explains how to deploy the project using the recommended stack:
 
-## 2. Backend (Railway)
-- Sign up at https://railway.app (no credit card needed)
-- Create a new project, link your backend repo
-- Set env vars:
-  - `MONGODB_URI` (from MongoDB Atlas)
-  - `MONGODB_DB` (e.g., researchai)
-  - `SUPABASE_URL`, `SUPABASE_SERVICE_KEY` (from Supabase)
-  - `OPENAI_API_KEY`, `GROQ_API_KEY` (if used)
-- Deploy (Railway auto-builds Dockerfile)
+## Frontend: Vercel
+1. Install the Vercel CLI:
+   ```bash
+   npm install -g vercel
+   ```
+2. Log in to Vercel:
+   ```bash
+   vercel login
+   ```
+3. Deploy the frontend:
+   ```bash
+   vercel --prod
+   ```
 
-## 3. Database (MongoDB Atlas)
-- Sign up at https://cloud.mongodb.com
-- Create a free cluster, DB, and user
-- Get connection string for `MONGODB_URI`
+## Backend: Railway
+1. Install the Railway CLI:
+   ```bash
+   npm install -g railway
+   ```
+2. Log in to Railway:
+   ```bash
+   railway login
+   ```
+3. Create a new project and link it:
+   ```bash
+   railway init
+   ```
+4. Deploy the backend:
+   ```bash
+   railway up
+   ```
 
-## 4. File Storage (Supabase)
-- Sign up at https://supabase.com
-- Create a project, enable Storage, create a bucket (e.g., pdfs)
-- Get `SUPABASE_URL` and `SUPABASE_SERVICE_KEY`
+## Database: MongoDB Atlas
+1. Create a free cluster on MongoDB Atlas.
+2. Add your connection string to the `.env` file under `MONGODB_URI`.
 
-## 5. Push to GitHub
-- Initialize git if needed:
-  ```powershell
-  git init
-  git remote add origin https://github.com/AmiraSayedMohamed/Summarize-and-Ask-Paper_Project.git
-  git add .
-  git commit -m "Initial deployable version"
-  git push -u origin main
-  ```
+## File Storage: Supabase
+1. Create a Supabase project.
+2. Add your Supabase URL and API key to the `.env` file under `SUPABASE_URL` and `SUPABASE_KEY`.
 
-## 6. Test
-- Open your Vercel and Railway URLs, upload a PDF, check DB and storage.
+## Final Steps
+- Ensure all environment variables are correctly set in `.env`.
+- Verify deployments by accessing the respective URLs.
 
 ---
 

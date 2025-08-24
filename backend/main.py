@@ -40,7 +40,7 @@ app.add_middleware(
 
 # Upload directory and static mount
 ROOT = os.path.dirname(__file__)
-UPLOAD_DIR = os.path.join(ROOT, "uploaded_pdfs")
+UPLOAD_DIR = "/tmp/uploaded_pdfs"
 os.makedirs(UPLOAD_DIR, exist_ok=True)
 app.mount("/uploaded_pdfs", StaticFiles(directory=UPLOAD_DIR), name="uploaded_pdfs")
 
