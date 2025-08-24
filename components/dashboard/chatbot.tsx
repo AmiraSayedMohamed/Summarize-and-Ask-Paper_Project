@@ -21,7 +21,7 @@ export function Chatbot({ paperFiles }: ChatbotProps) {
     // Prepare paperFiles for backend
     const paper_files: { [id: string]: string } = {};
     paperFiles.forEach((f) => (paper_files[f.id] = f.path));
-    const res = await fetch("http://localhost:8000/chat-with-papers/", {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/chat-with-papers/`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ user_query: input, paper_files }),

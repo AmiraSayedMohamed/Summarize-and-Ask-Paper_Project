@@ -77,7 +77,7 @@ export function FileUploadZone({ projectId, onFileUploaded }: FileUploadZoneProp
       if (uploadedFiles.length > 0) {
         const filesForJob: { [id: string]: string } = {};
         uploadedFiles.forEach(f => filesForJob[f.id] = f.url || "");
-        const response = await fetch("http://localhost:8000/start-analysis-job/", {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/start-analysis-job/`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ files: filesForJob, links: [], user_query: null }),
@@ -95,7 +95,7 @@ export function FileUploadZone({ projectId, onFileUploaded }: FileUploadZoneProp
     if (!jobId) return;
     setJobStatus("pending");
     pollingRef.current = setInterval(async () => {
-      const res = await fetch(`http://localhost:8000/job-status/${jobId}`);
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/job-status/${jobId}`);
       const data = await res.json();
       setJobStatus(data.status);
       if (data.status === "completed") {
