@@ -14,15 +14,22 @@ export const uploadFile = async (file: File, projectId: string): Promise<Uploade
     progress: 0,
   }
 
-  // Upload file to backend
+  // Upload file to backend (defensive parsing: check content-type before .json())
   const formData = new FormData();
   formData.append("file", file);
   const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/upload/`, {
     method: "POST",
     body: formData,
   });
+  const ct = response.headers.get("content-type") || "";
   if (!response.ok) {
-    throw new Error("Failed to upload file to backend");
+    const body = await response.text();
+    throw new Error(`Upload failed ${response.status}: ${body.slice(0,300)}`);
+  }
+  if (!ct.includes("application/json")) {
+    const body = await response.text();
+    console.error("Expected JSON but got:", body);
+    throw new Error("Server returned non-JSON response; check network/devtools.");
   }
   const data = await response.json();
   // response includes both file_path (server path) and public_url (served path)
